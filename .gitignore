@@ -1,0 +1,5 @@
+wandb/
+archive/chest_xray/
+archive/chest_xray_resized/
+results/
+*.zip
