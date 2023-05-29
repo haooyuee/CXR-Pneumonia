@@ -13,12 +13,12 @@ import wandb
 
 if __name__ == '__main__': 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--name', type=str, default="densenet121_pretrain_freeze_ft2")
-    parser.add_argument('--model', type=str, default="densenet121_pretrain_freeze")
+    parser.add_argument('--name', type=str, default="densenet121_pretrain_freeze2_ft")
+    parser.add_argument('--model', type=str, default="densenet121_pretrain_freeze2")
     parser.add_argument('--dataset_path', type=str, default="archive/chest_xray_resized/")
-    parser.add_argument('--num_epochs', type=int, default=10, help='')
+    parser.add_argument('--num_epochs', type=int, default=40, help='')
     parser.add_argument('--batch_size', type=int, default=16, help='')
-    parser.add_argument('--lr', type=float, default=0.00005, help='')
+    parser.add_argument('--lr', type=float, default=0.0001, help='')
     #parser.add_argument('--lr_decay', type=float, default=10, help='')#default 10 -> lr/10
     parser.add_argument('--weight_decay', type=float, default=1e-4, help='')
     parser.add_argument('--wandb', type=bool, default=True, help='')
@@ -87,7 +87,7 @@ if __name__ == '__main__':
         model.classifier = torch.nn.Linear(in_features, 2)
 
     elif "densenet121_pretrain_freeze" == cfg.model:
-        model = models.densenet121(weights='DEFAULT')
+        model = models.densenet121(pretrained=True)
         #num_ftrs = model.classifier.in_features
         #model.classifier = torch.nn.Sequential(
         #torch.nn.Linear(num_ftrs, 2), torch.nn.Sigmoid())
